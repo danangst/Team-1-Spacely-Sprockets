@@ -1,0 +1,1010 @@
+{
+    "tasks":[
+        {
+            "vm_name":"CentOS v7 Server VM",
+            "memory_mb":"2048",
+            "network_uuid":"ebe519da-e81b-4553-9db2-855d3b7ff936",
+            "uid":"591cf0a1e138231230fcc792",
+            "classification":"provision_nutanix",
+            "num_cores_per_vcpu":"2",
+            "fixed_cost":0.0,
+            "vm_disk_uuid":"768db6dd-b653-49b0-b729-6c9795cfef84",
+            "creation_time":1495036651,
+            "variable_cost":0.0,
+            "num_vcpus":"1",
+            "credential_id":"591cf0a1e138231230fcc786",
+            "modification_time":1495068894,
+            "vdisks":[
+
+            ],
+            "version":27,
+            "critical":true,
+            "editables":[
+
+            ],
+            "name":"Provision Nutanix"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc793",
+            "classification":"runshell",
+            "script":"hostname @@{Hostname}@@",
+            "creation_time":1495061607,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":25,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Task 1"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc794",
+            "classification":"profile_action_task",
+            "creation_time":1495061817,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":26,
+            "critical":true,
+            "editables":[
+
+            ],
+            "action":"create",
+            "name":"Provider Create Task"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc795",
+            "classification":"runshell",
+            "script":"hostname @@{VM_Hostname}@@\necho @@{VM_Hostname}@@ > \/etc\/hostname",
+            "creation_time":1495061861,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":24,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Set Hostname"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc796",
+            "classification":"runshell",
+            "script":"echo \"IPADDR=\"@@{VM_IP}@@ >> \/etc\/sysconfig\/network-scripts\/ifcfg-eth0\nservice network restart",
+            "creation_time":1495062820,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":21,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Set IP"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc797",
+            "classification":"runshell",
+            "script":"su -c 'yum -y update'",
+            "creation_time":1495064028,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":17,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Update All Packages"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc798",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install yum-cron\nsystemctl start yum-cron.service",
+            "creation_time":1495064028,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":17,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Schedule Daily Updates"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc799",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nsudo yum -y install httpd\nsudo firewall-cmd --permanent --add-port=80\/tcp\nsudo firewall-cmd --permanent --add-port=443\/tcp\nsudo firewall-cmd --reload\nsudo systemctl start httpd\nsudo systemctl enable httpd",
+            "creation_time":1495064714,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":14,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy Apache"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc79a",
+            "classification":"runshell",
+            "script":"wget https:\/\/dev.mysql.com\/get\/mysql57-community-release-el7-11.noarch.rpm\nsudo yum -y localinstall mysql57-community-release-el7-11.noarch.rpm\nsudo yum -y install mysql-community-server\n",
+            "creation_time":1495064877,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":14,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy MySQL"
+        },
+        {
+            "uid":"591cf0a1e138231230fcc79b",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install php.x86_64",
+            "creation_time":1495065008,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":14,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy PHP"
+        },
+        {
+            "vm_name":"CentOS v7 Server VM",
+            "memory_mb":"2048",
+            "network_uuid":"ebe519da-e81b-4553-9db2-855d3b7ff936",
+            "uid":"591cf0b3e138231230fcc806",
+            "classification":"provision_nutanix",
+            "num_cores_per_vcpu":"2",
+            "fixed_cost":0.0,
+            "vm_disk_uuid":"768db6dd-b653-49b0-b729-6c9795cfef84",
+            "creation_time":1495036651,
+            "variable_cost":0.0,
+            "num_vcpus":"1",
+            "credential_id":"591cf0a1e138231230fcc786",
+            "modification_time":1495068894,
+            "vdisks":[
+
+            ],
+            "version":26,
+            "critical":true,
+            "editables":[
+
+            ],
+            "name":"Provision Nutanix"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc807",
+            "classification":"runshell",
+            "script":"hostname @@{VM_Hostname}@@\necho @@{VM_Hostname}@@ > \/etc\/hostname",
+            "creation_time":1495061861,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":23,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Set Hostname"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc808",
+            "classification":"runshell",
+            "script":"echo \"IPADDR=\"@@{VM_IP}@@ >> \/etc\/sysconfig\/network-scripts\/ifcfg-eth0\nservice network restart",
+            "creation_time":1495062820,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":20,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Set IP"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc809",
+            "classification":"runshell",
+            "script":"su -c 'yum -y update'",
+            "creation_time":1495064028,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":16,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Update All Packages"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc80a",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install yum-cron\nsystemctl start yum-cron.service",
+            "creation_time":1495064028,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":16,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Schedule Daily Updates"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc80b",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nsudo yum -y install httpd\nsudo firewall-cmd --permanent --add-port=80\/tcp\nsudo firewall-cmd --permanent --add-port=443\/tcp\nsudo firewall-cmd --reload\nsudo systemctl start httpd\nsudo systemctl enable httpd",
+            "creation_time":1495064714,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":13,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy Apache"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc80c",
+            "classification":"runshell",
+            "script":"wget https:\/\/dev.mysql.com\/get\/mysql57-community-release-el7-11.noarch.rpm\nsudo yum -y localinstall mysql57-community-release-el7-11.noarch.rpm\nsudo yum -y install mysql-community-server\n",
+            "creation_time":1495064877,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":13,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy MySQL"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc80d",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install php.x86_64",
+            "creation_time":1495065008,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":13,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy PHP"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7ef",
+            "classification":"profile_action_task",
+            "creation_time":1495061817,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":25,
+            "critical":true,
+            "editables":[
+
+            ],
+            "action":"create",
+            "name":"Provider Create Task"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7f1",
+            "classification":"runshell",
+            "script":"hostname @@{VM_Hostname}@@\necho @@{VM_Hostname}@@ > \/etc\/hostname",
+            "creation_time":1495061861,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":23,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Set Hostname"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7f3",
+            "classification":"runshell",
+            "script":"echo \"IPADDR=\"@@{VM_IP}@@ >> \/etc\/sysconfig\/network-scripts\/ifcfg-eth0\nservice network restart",
+            "creation_time":1495062820,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":20,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Set IP"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7f5",
+            "classification":"runshell",
+            "script":"su -c 'yum -y update'",
+            "creation_time":1495064028,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":16,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Update All Packages"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7f7",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install yum-cron\nsystemctl start yum-cron.service",
+            "creation_time":1495064028,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":16,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Schedule Daily Updates"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7f9",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nsudo yum -y install httpd\nsudo firewall-cmd --permanent --add-port=80\/tcp\nsudo firewall-cmd --permanent --add-port=443\/tcp\nsudo firewall-cmd --reload\nsudo systemctl start httpd\nsudo systemctl enable httpd",
+            "creation_time":1495064714,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":13,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy Apache"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7fb",
+            "classification":"runshell",
+            "script":"wget https:\/\/dev.mysql.com\/get\/mysql57-community-release-el7-11.noarch.rpm\nsudo yum -y localinstall mysql57-community-release-el7-11.noarch.rpm\nsudo yum -y install mysql-community-server\n",
+            "creation_time":1495064877,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":13,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy MySQL"
+        },
+        {
+            "uid":"591cf0b3e138231230fcc7fd",
+            "classification":"runshell",
+            "script":"systemctl disable packagekitd\nyum -y install php.x86_64",
+            "creation_time":1495065008,
+            "credential_id":null,
+            "modification_time":1495068894,
+            "version":13,
+            "critical":false,
+            "editables":[
+
+            ],
+            "name":"Deploy PHP"
+        }
+    ],
+    "uid":"591cf0a1e138231230fcc784",
+    "classification":"blueprint",
+    "autoscale_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "uid":"591c71e7e138231230fc9596",
+        "classification":null,
+        "alert_count":"1",
+        "max_count":"1",
+        "pre_flow":null,
+        "min_count":"1",
+        "listen_for":"external",
+        "scale_by":"1",
+        "alert_window":"1800"
+    },
+    "profiles":[
+        {
+            "cost":0.0,
+            "uid":"591cf0a1e138231230fcc79d",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":"@@{vm_ip}@@",
+            "creation_time":1495036651,
+            "modification_time":1495068894,
+            "version":27,
+            "provider":"591cf0a1e138231230fcc792",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"VM1"
+        },
+        {
+            "cost":0.0,
+            "uid":"591cf0b3e138231230fcc805",
+            "classification":"resource_profile",
+            "service_port":22,
+            "address":"@@{vm_ip}@@",
+            "creation_time":1495036651,
+            "modification_time":1495068894,
+            "version":26,
+            "provider":"591cf0b3e138231230fcc806",
+            "service_type":"ssh",
+            "automatic_cost":false,
+            "os_type":"Linux",
+            "properties":[
+
+            ],
+            "name":"VM2"
+        }
+    ],
+    "strategy_enabled":false,
+    "replaced_tasks":{
+
+    },
+    "environment":"default",
+    "config":{
+        "setup":[
+
+        ],
+        "uid":"591c71e7e138231230fc9597",
+        "classification":null,
+        "deploy":[
+
+        ]
+    },
+    "calm-version":"1.8.3",
+    "description":"Create a CentOS v7 Server VM on AHV",
+    "parent":null,
+    "flows":[
+        {
+            "tasks":[
+                {
+                    "uid":"591cd467e138231230fca77d",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc793"
+                }
+            ],
+            "uid":"cid:00000003",
+            "classification":null,
+            "eta":-1,
+            "creation_time":1495061607,
+            "edges":[
+
+            ],
+            "has_critical_tasks":false,
+            "modification_time":1495068894,
+            "version":0,
+            "flow_type":null,
+            "critical":false,
+            "name":"Set Hostname"
+        },
+        {
+            "tasks":[
+                {
+                    "uid":"591cd539e13823124368fb29",
+                    "classification":null,
+                    "work_type":"PROFILE",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc794"
+                },
+                {
+                    "uid":"591cd565e13823124368fb3a",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc795"
+                },
+                {
+                    "uid":"591cd924e13823124368fcf3",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc796"
+                },
+                {
+                    "uid":"591cdddce138231230fcb273",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc797"
+                },
+                {
+                    "uid":"591cdddce138231230fcb275",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc798"
+                },
+                {
+                    "uid":"591cde54e138231243690351",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc799"
+                },
+                {
+                    "uid":"591cde54e138231243690353",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc79a"
+                },
+                {
+                    "uid":"591cde54e138231243690355",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000001",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0a1e138231230fcc79b"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7ed",
+                    "classification":null,
+                    "work_type":"PROFILE",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7ef"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7f0",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7f1"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7f2",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7f3"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7f4",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7f5"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7f6",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7f7"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7f8",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7f9"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7fa",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7fb"
+                },
+                {
+                    "uid":"591cf0b3e138231230fcc7fc",
+                    "classification":null,
+                    "work_type":"TASK",
+                    "target_id":"cid:00000002",
+                    "target_type":"RESOURCE",
+                    "work_id":"591cf0b3e138231230fcc7fd"
+                }
+            ],
+            "uid":"cid:00000004",
+            "classification":null,
+            "eta":-1,
+            "creation_time":1495061861,
+            "edges":[
+                {
+                    "dest":"591cd565e13823124368fb3a",
+                    "src":"591cd539e13823124368fb29",
+                    "uid":"591cd565e13823124368fb3b",
+                    "classification":null
+                },
+                {
+                    "dest":"591cd924e13823124368fcf3",
+                    "src":"591cd565e13823124368fb3a",
+                    "uid":"591cd924e13823124368fcf4",
+                    "classification":null
+                },
+                {
+                    "dest":"591cdddce138231230fcb273",
+                    "src":"591cd924e13823124368fcf3",
+                    "uid":"591cdddce138231230fcb276",
+                    "classification":null
+                },
+                {
+                    "dest":"591cdddce138231230fcb275",
+                    "src":"591cdddce138231230fcb273",
+                    "uid":"591cdddce138231230fcb277",
+                    "classification":null
+                },
+                {
+                    "dest":"591cde54e138231243690351",
+                    "src":"591cdddce138231230fcb275",
+                    "uid":"591cde54e138231243690356",
+                    "classification":null
+                },
+                {
+                    "dest":"591cde54e138231243690353",
+                    "src":"591cde54e138231243690351",
+                    "uid":"591cde54e138231243690357",
+                    "classification":null
+                },
+                {
+                    "dest":"591cde54e138231243690355",
+                    "src":"591cde54e138231243690353",
+                    "uid":"591cde54e138231243690358",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7f0",
+                    "src":"591cf0b3e138231230fcc7ed",
+                    "uid":"591cf0b3e138231230fcc7fe",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7f2",
+                    "src":"591cf0b3e138231230fcc7f0",
+                    "uid":"591cf0b3e138231230fcc7ff",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7f4",
+                    "src":"591cf0b3e138231230fcc7f2",
+                    "uid":"591cf0b3e138231230fcc800",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7f6",
+                    "src":"591cf0b3e138231230fcc7f4",
+                    "uid":"591cf0b3e138231230fcc801",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7f8",
+                    "src":"591cf0b3e138231230fcc7f6",
+                    "uid":"591cf0b3e138231230fcc802",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7fa",
+                    "src":"591cf0b3e138231230fcc7f8",
+                    "uid":"591cf0b3e138231230fcc803",
+                    "classification":null
+                },
+                {
+                    "dest":"591cf0b3e138231230fcc7fc",
+                    "src":"591cf0b3e138231230fcc7fa",
+                    "uid":"591cf0b3e138231230fcc804",
+                    "classification":null
+                }
+            ],
+            "has_critical_tasks":true,
+            "modification_time":1495068894,
+            "version":0,
+            "flow_type":"ACTION",
+            "critical":true,
+            "name":"create-action"
+        }
+    ],
+    "dependencies":[
+
+    ],
+    "credentials":[
+        {
+            "username":"root",
+            "public_key":null,
+            "uid":"591cf0a1e138231230fcc786",
+            "classification":null,
+            "secret_type":"password",
+            "creation_time":1495036651,
+            "modification_time":1495068894,
+            "secret":null,
+            "version":27,
+            "name":"CentOS root"
+        }
+    ],
+    "bp_id":null,
+    "properties":[
+
+    ],
+    "autoscale_enabled":false,
+    "name":"Deploy Two CentOS Middleware VMs on AHV",
+    "setup_ids":{
+
+    },
+    "h":0.0,
+    "resiliency_config":{
+        "post_flow":null,
+        "cool_down_period":"1800",
+        "alert_window":"1800",
+        "classification":null,
+        "alert_count":"1",
+        "pre_flow":null,
+        "listen_for":"internal",
+        "uid":"591c71e7e138231230fc9598"
+    },
+    "current_profile":null,
+    "resiliency_enabled":false,
+    "architecture":[
+        {
+            "tasks":[
+
+            ],
+            "uid":"cid:00000001",
+            "classification":"compute",
+            "autoscale_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "uid":"591c72ebe13823124368e7b4",
+                "classification":null,
+                "alert_count":"1",
+                "max_count":"1",
+                "pre_flow":null,
+                "min_count":"1",
+                "listen_for":"external",
+                "scale_by":"1",
+                "alert_window":"1800"
+            },
+            "profiles":[
+                "591cf0a1e138231230fcc79d"
+            ],
+            "strategy_enabled":false,
+            "config":{
+                "setup":[
+
+                ],
+                "uid":"591c72ebe13823124368e7b7",
+                "classification":null,
+                "deploy":[
+                    "591cf0a1e138231230fcc795",
+                    "591cf0a1e138231230fcc796",
+                    "591cf0a1e138231230fcc797",
+                    "591cf0a1e138231230fcc798",
+                    "591cf0a1e138231230fcc799",
+                    "591cf0a1e138231230fcc79a",
+                    "591cf0a1e138231230fcc79b"
+                ]
+            },
+            "parent":"591cf0a1e138231230fcc784",
+            "flows":[
+
+            ],
+            "dependencies":[
+
+            ],
+            "bp_id":"591cf0a1e138231230fcc784",
+            "properties":[
+                {
+                    "uid":"591cd467e138231230fca77f",
+                    "classification":null,
+                    "url":null,
+                    "editable":true,
+                    "value":null,
+                    "key":"VM_Hostname",
+                    "property_description":null,
+                    "property_type":"INTERNAL",
+                    "setter":null
+                },
+                {
+                    "uid":"591cd924e13823124368fcf5",
+                    "classification":null,
+                    "url":null,
+                    "editable":true,
+                    "value":null,
+                    "key":"VM_IP",
+                    "property_description":null,
+                    "property_type":"INTERNAL",
+                    "setter":null
+                }
+            ],
+            "autoscale_enabled":false,
+            "name":"Deploy CentOS v7 Server VM",
+            "h":0.0,
+            "resiliency_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "alert_window":"1800",
+                "classification":null,
+                "alert_count":"1",
+                "pre_flow":null,
+                "listen_for":"internal",
+                "uid":"591c72ebe13823124368e7b5"
+            },
+            "current_profile":"591cf0a1e138231230fcc79d",
+            "resiliency_enabled":false,
+            "w":0.0,
+            "strategy_config":{
+                "post_flow":null,
+                "rollback_pre_flow":null,
+                "classification":null,
+                "rolling_factor":"100",
+                "initial_version":null,
+                "approval_flag":false,
+                "upgrade_flow":null,
+                "rollback_flow":null,
+                "pre_flow":null,
+                "rollback_post_flow":null,
+                "upgrade_type":"rolling_upgrade",
+                "uid":"591c72ebe13823124368e7b6",
+                "users":[
+
+                ],
+                "teams":[
+
+                ],
+                "emails":[
+
+                ],
+                "initial_count":"1"
+            },
+            "y":276.7626037598,
+            "x":515.7846069336
+        },
+        {
+            "tasks":[
+
+            ],
+            "uid":"cid:00000002",
+            "classification":"compute",
+            "autoscale_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "uid":"591c72ebe13823124368e7b4",
+                "classification":null,
+                "alert_count":"1",
+                "max_count":"1",
+                "pre_flow":null,
+                "min_count":"1",
+                "listen_for":"external",
+                "scale_by":"1",
+                "alert_window":"1800"
+            },
+            "profiles":[
+                "591cf0b3e138231230fcc805"
+            ],
+            "strategy_enabled":false,
+            "config":{
+                "setup":[
+
+                ],
+                "uid":"591c72ebe13823124368e7b7",
+                "classification":null,
+                "deploy":[
+                    "591cf0b3e138231230fcc807",
+                    "591cf0b3e138231230fcc808",
+                    "591cf0b3e138231230fcc809",
+                    "591cf0b3e138231230fcc80a",
+                    "591cf0b3e138231230fcc80b",
+                    "591cf0b3e138231230fcc80c",
+                    "591cf0b3e138231230fcc80d"
+                ]
+            },
+            "parent":"591cf0a1e138231230fcc784",
+            "flows":[
+
+            ],
+            "dependencies":[
+
+            ],
+            "bp_id":"591cf0a1e138231230fcc784",
+            "properties":[
+                {
+                    "uid":"591cd467e138231230fca77f",
+                    "classification":null,
+                    "url":null,
+                    "editable":true,
+                    "value":null,
+                    "key":"VM_Hostname",
+                    "property_description":null,
+                    "property_type":"INTERNAL",
+                    "setter":null
+                },
+                {
+                    "uid":"591cd924e13823124368fcf5",
+                    "classification":null,
+                    "url":null,
+                    "editable":true,
+                    "value":null,
+                    "key":"VM_IP",
+                    "property_description":null,
+                    "property_type":"INTERNAL",
+                    "setter":null
+                }
+            ],
+            "autoscale_enabled":false,
+            "name":"Clone 1 of Deploy CentOS v7 Server VM",
+            "h":0.0,
+            "resiliency_config":{
+                "post_flow":null,
+                "cool_down_period":"1800",
+                "alert_window":"1800",
+                "classification":null,
+                "alert_count":"1",
+                "pre_flow":null,
+                "listen_for":"internal",
+                "uid":"591c72ebe13823124368e7b5"
+            },
+            "current_profile":"591cf0b3e138231230fcc805",
+            "resiliency_enabled":false,
+            "w":0.0,
+            "strategy_config":{
+                "post_flow":null,
+                "rollback_pre_flow":null,
+                "classification":null,
+                "rolling_factor":"100",
+                "initial_version":null,
+                "approval_flag":false,
+                "upgrade_flow":null,
+                "rollback_flow":null,
+                "pre_flow":null,
+                "rollback_post_flow":null,
+                "upgrade_type":"rolling_upgrade",
+                "uid":"591c72ebe13823124368e7b6",
+                "users":[
+
+                ],
+                "teams":[
+
+                ],
+                "emails":[
+
+                ],
+                "initial_count":"1"
+            },
+            "y":276.7626037598,
+            "x":776.7846069336
+        }
+    ],
+    "w":0.0,
+    "strategy_config":{
+        "post_flow":null,
+        "rollback_pre_flow":null,
+        "classification":null,
+        "rolling_factor":"100",
+        "initial_version":null,
+        "approval_flag":false,
+        "upgrade_flow":null,
+        "rollback_flow":null,
+        "pre_flow":null,
+        "rollback_post_flow":null,
+        "upgrade_type":"rolling_upgrade",
+        "uid":"591c71e7e138231230fc9599",
+        "users":[
+
+        ],
+        "teams":[
+
+        ],
+        "emails":[
+
+        ],
+        "initial_count":"1"
+    },
+    "y":0.0,
+    "x":0.0
+}

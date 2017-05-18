@@ -1,0 +1,40 @@
+#!/bin/bash
+
+#content-type
+CT="Content-Type:application/json"
+
+#User credentials
+USER="admin"
+PASSWD="nutanix/4u"
+
+#services
+SERVICE_URL="https://10.68.69.102:9440/PrismGateway/services/rest/v2.0"
+SERVICE_URL_V1="https://10.68.69.102:9440/PrismGateway/services/rest/v1"
+RESPONSE_CODE="%{http_code}\n"
+
+#resource
+RESOURCE_VM="/vms/"
+RESOURCE_SC="/storage_containers/"
+RESOURCE_IM="/images/"
+
+
+#Storage Container INFO
+echo "------------------------------------------------------------"
+echo "Storage Container Details"
+echo "------------------------------------------------------------"
+SC_OUTPUT=$(curl --write-out $RESPONSE_CODE --insecure -s -H $CT -X GET -u $USER:$PASSWD "$SERVICE_URL$RESOURCE_SC")
+echo $SC_OUTPUT | jq
+echo "------------------------------------------------------------"
+
+
+# Insert Space
+echo
+echo
+
+#VM INFO
+echo "------------------------------------------------------------"
+echo "VM Details"
+echo "------------------------------------------------------------"
+VM_OUTPUT=$(curl --write-out $RESPONSE_CODE --insecure -s -H $CT -X GET -u $USER:$PASSWD "$SERVICE_URL_V1$RESOURCE_VM")
+echo $VM_OUTPUT | jq
+echo "------------------------------------------------------------"

@@ -1,0 +1,90 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Nutanix",
+		"_postman_id": "fb6b1198-e647-0910-e725-22caee1aae74",
+		"description": "A set of nutanix v2 Rest API's to manage VMs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "V2:Health and Tasks",
+			"description": "",
+			"item": [
+				{
+					"name": "Get all Health Checks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "https://10.68.69.102:9440/api/nutanix/v2.0/health_checks/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46bnV0YW5peC80dQ==",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Health Checks"
+					},
+					"response": []
+				},
+				{
+					"name": "Get_SPecific_Healthcheck",
+					"request": {
+						"url": "https://10.68.69.102:9440/PrismGateway/services/rest/v2.0/health_checks/00054faa-ba8e-a8fe-230f-001fc69beca8%3A%3A111000",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get all events",
+					"request": {
+						"url": "https://10.68.69.102:9440/PrismGateway/services/rest/v2.0/events/?acknowledged=false",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46bnV0YW5peC80dQ==",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Alerts",
+					"request": {
+						"url": "https://10.68.69.102:9440/PrismGateway/services/rest/v1/alerts/",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic YWRtaW46bnV0YW5peC80dQ==",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

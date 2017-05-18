@@ -1,0 +1,1 @@
+curl --insecure --request GET   --url https://10.68.69.102:9440/PrismGateway/services/rest/v1/alerts/   --header 'authorization: Basic YWRtaW46bnV0YW5peC80dQ=='   --header 'cache-control: no-cache'   --header 'postman-token: 9cddca79-90a4-8491-2e59-450de70ec58d' | jq

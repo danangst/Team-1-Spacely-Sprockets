@@ -1,0 +1,1 @@
+curl -X PUT https://10.68.69.102:9440/PrismGateway/services/rest/v2.0/cluster/ -H 'authorization: Basic YWRtaW46bnV0YW5peC80dQ==' -H 'cache-control: no-cache' -H 'content-type: application/json' -H 'postman-token: 6d54800d-7c05-0e4c-7968-da029587ba22' -d '{"name": "GROUP-1","cluster_external_data_services_ipaddress": "10.68.69.104"}'

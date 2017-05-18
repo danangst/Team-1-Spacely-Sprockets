@@ -1,0 +1,1 @@
+curl --insecure --request GET   --url 'https://10.68.69.102:9440/PrismGateway/services/rest/v2.0/health_checks/?include_internal_checks=true'   --header 'authorization: Basic YWRtaW46bnV0YW5peC80dQ=='   --header 'cache-control: no-cache'   --header 'postman-token: 9e4c55c2-e370-c128-f0e9-2c31e0809ff9' |jq -r .entities[].name

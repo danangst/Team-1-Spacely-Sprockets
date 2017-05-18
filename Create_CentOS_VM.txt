@@ -1,0 +1,7 @@
+curl --request POST \
+  --url https://10.68.69.102:9440/PrismGateway/services/rest/v2.0/vms/ \
+  --header 'authorization: Basic YWRtaW46bnV0YW5peC80dQ==' \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: application/json' \
+  --header 'postman-token: aba118db-2ee2-e714-55b8-906482d58cc1' \
+  --data '{\r\n   "description":"Cent OS 7 Base Image",\r\n   "guest_os":"Cent OS 7",\r\n   "memory_mb":1024,\r\n   "name":"Centos7",\r\n   "num_cores_per_vcpu":2,\r\n   "num_vcpus":1,\r\n   "vm_disks":[\r\n      {\r\n         "disk_address":{\r\n            "device_bus":"ide",\r\n            "device_index":0\r\n         },\r\n         "is_cdrom":true,\r\n         "is_empty":true\r\n      },\r\n      {\r\n         "disk_address":{\r\n            "device_bus":"scsi",\r\n            "device_index":0\r\n         },\r\n		 "vm_disk_clone":{\r\n            "disk_address":{\r\n               "vmdisk_uuid":"e8b3ca3e-abbc-4144-8f28-7f6ec2f2993f"\r\n            }\r\n         }\r\n      }\r\n   ],\r\n   " hypervisor_type":"ACROPOLIS",\r\n   "affinity":null\r\n}'

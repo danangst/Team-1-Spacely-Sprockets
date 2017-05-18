@@ -1,0 +1,31 @@
+{
+   "description":"Cent OS 7 Base Image",
+   "guest_os":"Cent OS 7",
+   "memory_mb":1024,
+   "name":"Centos7",
+   "num_cores_per_vcpu":2,
+   "num_vcpus":1,
+   "vm_disks":[
+      {
+         "disk_address":{
+            "device_bus":"ide",
+            "device_index":0
+         },
+         "is_cdrom":true,
+         "is_empty":true
+      },
+      {
+         "disk_address":{
+            "device_bus":"scsi",
+            "device_index":0
+         },
+		 "vm_disk_clone":{
+            "disk_address":{
+               "vmdisk_uuid":"e8b3ca3e-abbc-4144-8f28-7f6ec2f2993f"
+            }
+         }
+      }
+   ],
+   " hypervisor_type":"ACROPOLIS",
+   "affinity":null
+}
